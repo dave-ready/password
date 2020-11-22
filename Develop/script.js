@@ -28,9 +28,21 @@ generateBtn.addEventListener("click", writePassword);
 //after all prompts are answered, a password needs to be generated and 
 //displayed as a prompt or on screen
 
-var psswrdLength
-var chrctrTypes 
-var lwrcase 
-var upprCase 
-var nmbr
-var chrctr 
+var psswrdLength = prompt("Welcome To Password Generator! How many characters would you like your password to be?");
+var lwrCase = confirm("Would you like to use lower case letters?");
+var upprCase = confirm("Would youi like to use upper-case letters?");
+var numbChar = Confirm ("Would you like to use and numbers or special characters?");
+
+
+
+prompt("Welcome To Password Generator! How many characters would you like your password to be?")
+
+if (psswrdLength === < 8) {
+  prompt("SORRY: Password must be at least 8 characters long. Please enter another number"){
+
+  } Else if (psswrdLength === > 128) {
+    prompt("Sorry: Password can be no longer than 128 characters.  Please enter another number") {
+
+    } Else ("Your password is" + " " + psswrdLength + " " + "characters long!")
+  }
+}
