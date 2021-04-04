@@ -135,9 +135,15 @@ if (confirmNumbers) {
 
 };
 
-var password = [];
+var passwordArray = [];
+for (var i = 0; i < enter; i++) {
+  var selectCriteria = criteria[Math.floor(Math.random() * criteria.length)];
+  passwordArray.push(selectCriteria);
+}
 
-
+var password = passwordArray.join("");
+userInput(password);
+return password;
 };
 
 
