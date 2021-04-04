@@ -96,20 +96,49 @@ if (confirmNumbers) {
   } else if (confirmSpclChars && confirmNumbers) {
     criteria = spclChars.concat(numbers);
 
-  } else if (confirmNumbers && confirmUppercase) {
+  } else if (confirmNumbers && confirmUpperCase) {
     criteria = numbers.concat(upperCase);
 
-  } else if (confirmLowercase && confirmNumbers) {
+  } else if (confirmLowerCase && confirmNumbers) {
     criteria = lowerCase.concat(numbers);
 
-  } else if (confirmSpclChars && confirmLowercase) {
+  } else if (confirmSpclChars && confirmLowerCase) {
     criteria = spclChars.concat(lowerCase);
 
-  } else if (confirmSpclChars && confirmUppercase) {
+  } else if (confirmSpclChars && confirmUpperCase) {
     criteria = spclChars.concat(upperCase);
 
-  } else if (confirmLowercase && confirmUppercase) {
+  } else if (confirmLowerCase && confirmUpperCase) {
     criteria = lowerCase.concat(upperCase);
+
+//If user selects 3 criteria
+
+} else if (confirmNumbers && confirmSpclChars && confirmUpperCase) {
+  criteria = numbers.concat(numbers, upperCase);
+
+} else if (confirmNumbers && confirmSpclChars && confirmLowerCase) {
+  criteria = numbers.concat(numbers, lowerCase);
+
+} else if (confirmNumbers && confirmLowerCase && confirmUpperCase) {
+  criteria = numbers.concat(lowerCase, upperCase);
+
+} else if (confirmSpclChars && confirmLowerCase && confirmUpperCase) {
+  criteria = spclChars.concat(upperCase, lowerCase);
+
+//If user selects no criteria
+} else if (!confirmNumbers && !confirmSpclChars && !confirmUpperCase && !confirmLowerCase) {
+  criteria = alert("Please choose at least one password criterion.");
+
+//If user selects all criteria
+} else {
+  criteria = spclChars.concat(numbers, lowerCase, upperCase);
+
+};
+
+var password = [];
+
+
+};
 
 
 
