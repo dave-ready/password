@@ -41,7 +41,7 @@ var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 
 var spclChars = ["!", "@","#","$","%","&", "*", "'", "-", "_", "+", "=", ",", ".", "/", "?", "<", ">", "~"];
 
-var password = [];
+var passwordArray = [];
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -50,20 +50,43 @@ var getUpperCase = function (x) {
   return x.toUpperCase ();
 };
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", function() { 
+  password = generatePassword();
+  document.getElementById("password").placeholder = password;
+});
+
+//Create function to generate password and write it to the #password id in the html file
+function generatePassword() { 
+  //determine password length
+  var psswrdLength = parseInt(prompt("Welcome To Password Generator! How many characters would you like your password to be?"));
+
+if (!psswrdLength) {
+  alert("Please indicate your password length with a numeral.");
+
+  } else if (psswrdLength < 8) {
+    psswrdLength = parseInt(prompt("SORRY: Password must be at least 8 characters long."));
+
+  } else if (psswrdLength > 128) {
+      psswrdLength = parseInt(prompt("Sorry: Password can be no longer than 128 characters"));
+
+      } else { 
+        confirmNumbers = confirm("Would you like it to contain numbers?");
+        confirmSpclChars = confirm("Would you like it to have special characters?");
+        confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
+        confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
+
+      };
 
 
-prompt("Welcome To Password Generator! How many characters would you like your password to be?")
+    };
 
-if (psswrdLength < 8) {
-  prompt("SORRY: Password must be at least 8 characters long. Please enter another number")
 
- } Else if (psswrdLength > 128) {
-    prompt("Sorry: Password can be no longer than 128 characters.  Please enter another number") 
+//prompt("Welcome To Password Generator! How many characters would you like your password to be?")
 
-    }Else {
+if (confirmNumbers) {
 
-     Alert ("Your password is" + " " + psswrdLength + " " + "characters long!")
-  }
+}
 
 if (confirmLwrCase) {
 
