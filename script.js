@@ -75,30 +75,43 @@ if (!psswrdLength) {
         confirmSpclChars = confirm("Would you like it to have special characters?");
         confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
         confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
-
       };
 
-
-    };
-
-
-//prompt("Welcome To Password Generator! How many characters would you like your password to be?")
+//If user opts for one password criterion
 
 if (confirmNumbers) {
+    criteria = numbers;
+      
+  } else if (confirmLwrCase) {
+    criteria = lowerCase;
+      
+  } else if (confirmUpprCase) {
+    criteria = upperCase;
+      
+  } else if (confirmSpclChars) {
+    criteria = spclChars;
 
-}
+//If user selects 2 criteria
 
-if (confirmLwrCase) {
+  } else if (confirmSpclChars && confirmNumbers) {
+    criteria = spclChars.concat(numbers);
 
-}
+  } else if (confirmNumbers && confirmUppercase) {
+    criteria = numbers.concat(upperCase);
 
-if (confirmUpprCase) {
+  } else if (confirmLowercase && confirmNumbers) {
+    criteria = lowerCase.concat(numbers);
 
-}
+  } else if (confirmSpclChars && confirmLowercase) {
+    criteria = spclChars.concat(lowerCase);
 
-if (confirmNumChar) {
-  
-}
+  } else if (confirmSpclChars && confirmUppercase) {
+    criteria = spclChars.concat(upperCase);
+
+  } else if (confirmLowercase && confirmUppercase) {
+    criteria = lowerCase.concat(upperCase);
+
+
 
 
 
