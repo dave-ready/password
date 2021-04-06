@@ -28,10 +28,16 @@
 
 
 
-var psswrdLength = prompt("Welcome To Password Generator! How many characters would you like your password to be?");
-var confirmLwrCase = confirm("Would you like to use lower case letters?");
-var confirmUpprCase = confirm("Would you like to use upper-case letters?");
-var confirmNumChar = Confirm ("Would you like to use and numbers or special characters?");
+//var psswrdLength = prompt("Welcome To Password Generator! How many characters would you like your password to be?");
+//var confirmLwrCase = confirm("Would you like to use lower case letters?");
+//var confirmUpprCase = confirm("Would you like to use upper-case letters?");
+//var confirmNumChar = confirm("Would you like to use and numbers or special characters?");
+
+var psswrdLength;
+var confirmSpclChars;
+var confirmNumbers;
+var confirmLowercase;
+var confirmUppercase;
 
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -39,16 +45,18 @@ var upperCase = ["A", "B", "C","D","E", "F", "G", "H", "I","J", "K", "L", "M", "
 
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-var spclChars = ["!", "@","#","$","%","&", "*", "'", "-", "_", "+", "=", ",", ".", "/", "?", "<", ">", "~"];
+var spclChars = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 
-var passwordArray = [];
-
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
+//var passwordArray = [];
 
 var getUpperCase = function (x) {
   return x.toUpperCase ();
 };
+
+
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", function() { 
@@ -59,7 +67,7 @@ generateBtn.addEventListener("click", function() {
 //Create function to generate password and write it to the #password id in the html file
 function generatePassword() { 
   //determine password length
-  var psswrdLength = parseInt(prompt("Welcome To Password Generator! How many characters would you like your password to be?"));
+ psswrdLength = parseInt(prompt("Welcome To Password Generator! How many characters would you like your password to be?"));
 
 if (!psswrdLength) {
   alert("Please indicate your password length with a numeral.");
@@ -71,10 +79,10 @@ if (!psswrdLength) {
       psswrdLength = parseInt(prompt("Sorry: Password can be no longer than 128 characters"));
 
       } else { 
-        confirmNumbers = confirm("Would you like it to contain numbers?");
-        confirmSpclChars = confirm("Would you like it to have special characters?");
-        confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
-        confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
+        var confirmNumbers = confirm("Would you like it to contain numbers?");
+        var confirmSpclChars = confirm("Would you like it to have special characters?");
+        var confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
+        var confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
       };
 
 //If user opts for one password criterion
@@ -82,10 +90,10 @@ if (!psswrdLength) {
 if (confirmNumbers) {
     criteria = numbers;
       
-  } else if (confirmLwrCase) {
+  } else if (confirmLowerCase) {
     criteria = lowerCase;
       
-  } else if (confirmUpprCase) {
+  } else if (confirmUpperCase) {
     criteria = upperCase;
       
   } else if (confirmSpclChars) {
@@ -130,13 +138,13 @@ if (confirmNumbers) {
   criteria = alert("Please choose at least one password criterion.");
 
 //If user selects all criteria
-} else {
+} else if (confirmNumber && confirmSpecial && confirmUppercase && confirmLowercase) {
   criteria = spclChars.concat(numbers, lowerCase, upperCase);
 
 };
 
 var passwordArray = [];
-for (var i = 0; i < enter; i++) {
+for (var i = 0; i < psswrdLength; i++) {
   var selectCriteria = criteria[Math.floor(Math.random() * criteria.length)];
   passwordArray.push(selectCriteria);
 }
@@ -145,6 +153,19 @@ var password = passwordArray.join("");
 userInput(password);
 return password;
 };
+
+//add password to previously generated passwords
+document.getElementById("lastPasswords").textContent = passwordArray+ "<br>";
+
+function userInput (password) {
+    document.getElementById("password").textContent = password;
+}
+
+var copy = document.querySelector()
+
+var passwordArray = generatePassword();
+    var pass = document.querySelector("password");
+    pass.value = passwordArray;
 
 
 
