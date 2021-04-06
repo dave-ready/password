@@ -50,7 +50,7 @@ var spclChars = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", "."
 //var passwordArray = [];
 
 var getUpperCase = function (x) {
-  return x.toUpperCase ();
+  return x.getUpperCase ();
 };
 
 
@@ -59,7 +59,7 @@ var generateBtn = document.querySelector("#generate");
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", function() { 
+generateBtn.addEventListener("click", function() { //writePassword instead of function()
   password = generatePassword();
   document.getElementById("password").placeholder = password;
 });
@@ -72,100 +72,100 @@ function generatePassword() {
 if (!psswrdLength) {
   alert("Please indicate your password length with a numeral.");
 
-  } else if (psswrdLength < 8) {
-    psswrdLength = parseInt(prompt("SORRY: Password must be at least 8 characters long."));
+  } else if (psswrdLength < 8 || psswrdLength > 128) {
+    psswrdLength = parseInt(prompt("Please choose between 8 and 128"));
+  }
+  //Other Criteria
+  else {
+      confirmNumbers = confirm("Would you like it to contain numbers?");
+      confirmSpclChars = confirm("Would you like it to have special characters?");
+      confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
+      confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
+  };
 
-  } else if (psswrdLength > 128) {
-      psswrdLength = parseInt(prompt("Sorry: Password can be no longer than 128 characters"));
 
-      } else { 
-        var confirmNumbers = confirm("Would you like it to contain numbers?");
-        var confirmSpclChars = confirm("Would you like it to have special characters?");
-        var confirmUpperCase = confirm("Would you like it to contain Uppercase letters?");
-        var confirmLowerCase = confirm("Would you like it to contain Lowercase letters?");
-      };
+//If user selects no to all criteria
+ if (!confirmNumbers && !confirmSpclChars && !confirmUpperCase && !confirmLowerCase) {
+  criteria = alert("Please choose at least one password criteria.");
+
+//if user selects yes to all criteria
+} else if (confirmNumbers && confirmSpclChars && confirmUpperCase && confirmLowerCase) {
+  criteria = spclChars.concat(numbers, lowerCase, upperCase);
+
+//if user selects 3 criteria
+
+} else if(confirmNumbers && confirmSpclChars && confirmUpperCase) {
+  criteria = numbers.concat(numbers, upperCase);
+
+} else if(confirmNumbers && confirmSpclChars && confirmLowerCase) {
+  criteria = numbers.concat(numbers, lowerCase);
+
+} else if(confirmNumbers && confirmLowerCase && confirmUpperCase) {
+  criteria = numbers.concat(lowerCase, upperCase);
+
+} else if(confirmSpclChars && confirmLowerCase && confirmUpperCase) {
+  criteria = spclChars.concat(upperCase, lowerCase);
+
+//if user selects 2 criteria
+
+} else if (confirmSpclChars && confirmNumbers) {
+  criteria = spclChars.concat(numbers);
+
+} else if (confirmSpclChars && confirmLowerCase) {
+  criteria = spclChars.concat(lowerCase);
+
+} else if (confirmSpclChars && confirmUpperCase) {
+  criteria= spclChars.concat(upperCase);
+
+} else if (confirmLowerCase && confirmNumbers) {
+  criteria= smletter.concat(numbers);
+
+} else if (confirmLowerCase && confirmUpperCase) {
+  criteria= lowerCase.concat(upperCase);
+
+} else if (confirmNumbers && confirmUpperCase) {
+  criteria = numbers.concat(upperCase);
 
 //If user opts for one password criterion
 
-if (confirmNumbers) {
-    criteria = numbers;
-      
-  } else if (confirmLowerCase) {
-    criteria = lowerCase;
-      
-  } else if (confirmUpperCase) {
-    criteria = upperCase;
-      
-  } else if (confirmSpclChars) {
-    criteria = spclChars;
+} else if (confirmSpclChars) {
+  criteria = spclChars;
 
-//If user selects 2 criteria
+} else if (confirmLowerCase) {
+  criteria = lowerCase;
 
-  } else if (confirmSpclChars && confirmNumbers) {
-    criteria = spclChars.concat(numbers);
+} else if (confirmUpperCase) {
+  criteria = upperCase;
 
-  } else if (confirmNumbers && confirmUpperCase) {
-    criteria = numbers.concat(upperCase);
-
-  } else if (confirmLowerCase && confirmNumbers) {
-    criteria = lowerCase.concat(numbers);
-
-  } else if (confirmSpclChars && confirmLowerCase) {
-    criteria = spclChars.concat(lowerCase);
-
-  } else if (confirmSpclChars && confirmUpperCase) {
-    criteria = spclChars.concat(upperCase);
-
-  } else if (confirmLowerCase && confirmUpperCase) {
-    criteria = lowerCase.concat(upperCase);
-
-//If user selects 3 criteria
-
-} else if (confirmNumbers && confirmSpclChars && confirmUpperCase) {
-  criteria = numbers.concat(numbers, upperCase);
-
-} else if (confirmNumbers && confirmSpclChars && confirmLowerCase) {
-  criteria = numbers.concat(numbers, lowerCase);
-
-} else if (confirmNumbers && confirmLowerCase && confirmUpperCase) {
-  criteria = numbers.concat(lowerCase, upperCase);
-
-} else if (confirmSpclChars && confirmLowerCase && confirmUpperCase) {
-  criteria = spclChars.concat(upperCase, lowerCase);
-
-//If user selects no criteria
-} else if (!confirmNumbers && !confirmSpclChars && !confirmUpperCase && !confirmLowerCase) {
-  criteria = alert("Please choose at least one password criterion.");
-
-//If user selects all criteria
-} else if (confirmNumber && confirmSpecial && confirmUppercase && confirmLowercase) {
-  criteria = spclChars.concat(numbers, lowerCase, upperCase);
-
+} else if (numbers) {
+  criteria = numbers;
 };
 
 var passwordArray = [];
+
+
 for (var i = 0; i < psswrdLength; i++) {
-  var selectCriteria = criteria[Math.floor(Math.random() * criteria.length)];
-  passwordArray.push(selectCriteria);
-}
+  var chooseCriteria = criteria[Math.floor(Math.random() * criteria.length)];
+  passwordArray.push(chooseCriteria);
+};
 
 var password = passwordArray.join("");
-userInput(password);
+UserInput(password);
 return password;
 };
 
 //add password to previously generated passwords
-document.getElementById("lastPasswords").textContent = passwordArray+ "<br>";
+document.getElementById("lastPasswords").textContent += passwordArray+ "<br>";
 
-function userInput (password) {
+function UserInput (password) {
     document.getElementById("password").textContent = password;
-}
+};
 
 var copy = document.querySelector()
-
 var passwordArray = generatePassword();
-    var pass = document.querySelector("password");
-    pass.value = passwordArray;
+var pass = document.querySelector("password");
+  pass.value = passwordArray;
+
 
 
 
